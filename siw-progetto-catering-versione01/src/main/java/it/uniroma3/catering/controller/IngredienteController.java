@@ -119,6 +119,16 @@ public class IngredienteController {
 		return "ingrediente.html";
 	}
 	
+	// richiede un singolo ingrediente tramite id
+		@GetMapping("/ingredienteUtente/{id}")
+		public String getIngredienteUtente(@PathVariable("id")Long id, Model model) {
+			// id è una variabile associata al path
+			Ingrediente ingrediente = ingredienteService.findById(id);
+			model.addAttribute("ingrediente", ingrediente);
+			// ritorna la pagina con i dati dell'entità richiesta
+			return "ingredienteUtente.html";
+		}
+	
 	// richiede tutti gli ingredienti, non c'è id
 	@GetMapping("/ingredienti")
 	public String getIngredienti(Model model) {

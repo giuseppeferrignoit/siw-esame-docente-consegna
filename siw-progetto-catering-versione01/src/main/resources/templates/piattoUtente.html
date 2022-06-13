@@ -48,7 +48,7 @@
 					<li th:each="ingrediente : ${piatto.ingredienti}">
 						<p class="desc">
 							<span>
-								<a href="ingrediente.html" th:href="@{'/ingrediente' + '/' + ${ingrediente.id}}"
+								<a href="ingredienteUtente.html" th:href="@{'/ingredienteUtente' + '/' + ${ingrediente.id}}"
 						   		th:text="${ingrediente.nome}">Ingrediente</a>
 						   	</span>
 						</p>

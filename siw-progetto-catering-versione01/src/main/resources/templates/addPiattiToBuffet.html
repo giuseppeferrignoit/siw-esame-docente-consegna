@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>  	
+	<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1">    
+	<title>Aggiungi piatti ad un buffet - admin</title>
+		<link rel="stylesheet" href="/../elenchi.css"/>  
+</head> 
+
+<body>
+	<header> 
+		<div id="titolo"><strong class="titolo">DETTAGLI DEL BUFFET CON I PIATTI</strong></div>
+	</header>
+	
+	<div class="sezione">
+		<p>
+			<span ><strong>Nome buffet: </strong></span>
+			<span th:text="${buffet.nome}">Buffet generico</span>
+		
+			<span><strong> - Descrizione buffet: </strong></span>
+			<span  th:text="${buffet.descrizione}">Descrizione generica</span>
+		
+			<span ><strong> - Nome chef: </strong></span>
+			<span >
+				<a th:text="${buffet.chef}" th:href="@{'/chef' + '/' + ${buffet.chef.id}}">Chef</a>
+			</span>
+		</p>
+	</div>
+	
+	
+	<div th:if="${!buffet.piatti.empty}">
+		<div class="sezione">
+			<h3>Piatti presenti nel buffet:</h3>
+			<ul>
+				<li th:each="piatto: ${buffet.piatti}">
+				<p class="desc">
+							<span>
+								<a href="piatto.html" th:href="@{'/piatto' + '/' + ${piatto.id}}"
+								   th:text="${piatto.nome}">Piatto</a>
+							</span>
+							<span>
+							    <a href="#" th:href="@{'/updatePiatto' + '/' + ${piatto.id}}"><strong class="modifica">MODIFICA</strong></a> 
+							</span>
+							<span>
+								<a href="#" th:href="@{'/deletePiatto' + '/' + ${piatto.id}}"><strong class="elimina">ELIMINA</strong></a> 
+							</span>
+						</p>
+				</li>	   	
+			</ul>
+		</div>
+	</div>
+	
+	
+	<div th:if="${!piattiAssenti.empty}">
+		<div class="sezione">
+			<h3>Vuoi aggiungere un piatto al buffet tra quelli disponibili?</h3>
+			<ul>
+				<li th:each="piatto: ${piattiAssenti}">
+					<p class="desc">
+						<a href="piatto.html" th:href="@{'/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">Piatto</a>
+						<a href="#" th:href="@{'/buffet' + '/' + ${buffet.id} + '/' + ${piatto.id}}"><strong class="conferma">Aggiungi al buffet</strong></a>
+					</p>
+				</li>	   	
+			</ul>
+		</div>
+		
+		
+	</div>
+	
+	<div class="sezione">
+		<p>
+			<a href="#" th:href="@{'/buffet' + '/' + ${buffet.id} + '/nuovoPiatto'}">
+							<strong class="conferma">CREA UN NUOVO PIATTO</strong></a>
+		</p>
+	</div>
+	
+	<div class="sezione">
+			<a th:href="@{/home}"><strong class="top">Home</strong></a>
+	</div>
+	
+</body>
+
+</html>

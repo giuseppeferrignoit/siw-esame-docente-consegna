@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+		<title>Inserimento ingrediente</title>
+		<link rel="stylesheet" href="/form.css"/>
+	</head>
+	
+	<body>
+	<header> 
+		<div id="titolo"><strong class="titolo">Catering SRL - Inserimento dati ingrediente</strong></div>
+	</header>
+	
+	<section>
+
+		<div class="flex-container">
+			
+			<div class="flex-dati">
+				<div class="sezione">
+					<form  th:action="@{/ingrediente}" method="POST" th:object="${ingrediente}">
+					
+						<div th:if="${#fields.hasGlobalErrors()}">
+					    		<p 	th:each="err : ${#fields.globalErrors()}" 
+					  				th:text="${err}">ERRORE GENERICO</p> 
+					  	</div>
+				
+						<div>
+							<span>Nome: </span>
+							<span><input type="text" th:field="*{nome}"/></span>
+							<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+						</div>
+						
+						<div>
+							<span>Origine: </span>
+							<span><input type="text" th:field="*{origine}"/></span>		
+							<span th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></span>
+						</div>
+						
+						<div>
+							<span>Descrizione: </span>
+							<span><input type="text" th:field="*{descrizione}"/></span>		
+							<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+						</div>
+				
+						<div class="sezione">
+							<button type="submit"><strong class="bottone">Conferma nuovo ingrediente</strong></button>
+						</div>
+						
+						
+					</form>
+				</div>
+			</div>
+					
+			<div class="flex-foto">
+				<div class="fotografia">
+					<img style="border: 3px solid green"  src="../../olio.jpg" alt="Image" height="300" width="360">
+				</div>
+			</div>
+				
+		</div>		
+	</section>
+	
+	<div class="sezione">
+			<a th:href="@{/home}"><strong class="top">Home</strong></a>
+	</div>
+		
+	</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cancellazione Buffet - admin</title>
+		<link rel="stylesheet" href="../elenchi.css"/>  
+	</head>
+	
+	<body>
+		<header> 
+			<div id="titolo"><strong class="titolo">CANCELLAZIONE BUFFET</strong></div>
+		</header>	
+		
+		<div class="sezione">	
+			<h3>Sei sicuro di voler eliminare il buffet
+				<span th:text="${buffet.nome}">Buffet</span>
+				(<span th:text="${buffet.descrizione}">Descrizione</span>)?
+				
+				<p>
+					<a th:href="@{'/confermaDeleteBuffet' + '/' + ${buffet.id}}"><strong class="confermaCancellazione">CONFERMA</strong></a>
+					<a th:href="@{'/buffets'}"><strong class="annulla">ANNULLA</strong></a>
+				</p>
+			</h3>
+		</div>
+		
+		<div class="sezione">
+			<a th:href="@{/home}"><strong class="top">Home</strong></a>
+		</div>
+	</body>
+</html>

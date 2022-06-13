@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>  	
+		<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1">
+		<title>Dettagli piatto - vista utente</title>
+		<link rel="stylesheet" href="../../dettagli.css"/>    
+	</head> 
+
+	<body>
+		<header> 
+			<div id="titolo"><strong class="titolo">Dettagli piatto e ingredienti</strong></div>
+		</header>
+		
+		<section>
+			<div class="flex-container">
+				<div class="flex-dati">
+	
+					<div class="sezione">
+						<p>
+							<span ><strong>Nome piatto: </strong></span>
+							<span th:text="${piatto.nome}">Nome generico</span>
+						</p>
+						<p>
+							<span><strong>Descrizione piatto: </strong></span>
+							<span  th:text="${piatto.descrizione}">Descrizione generica</span>
+						</p>
+					</div>
+					
+				</div>
+				
+				<div class="flex-foto">
+					<div class="fotografia">
+						<img style="border: 3px solid green"  src="../piatto.jpg" alt="Image" height="300" width="360">
+					</div>
+				</div>	
+				
+			</div>
+		</section>
+		
+		<div th:if="${!piatto.ingredienti.empty}">
+			<div class="sezione">
+				<strong>INGREDIENTI PRESENTI NEL PIATTO:</strong>
+			</div>
+			<div class="sezione">
+			
+				<ul>
+					<li th:each="ingrediente : ${piatto.ingredienti}">
+						<p class="desc">
+							<span>
+								<a href="ingrediente.html" th:href="@{'/ingrediente' + '/' + ${ingrediente.id}}"
+						   		th:text="${ingrediente.nome}">Ingrediente</a>
+						   	</span>
+						</p>
+					</li>	   	
+				</ul>
+			</div>
+		</div>
+	
+	<div class="sezione">
+			<a th:href="@{/home}"><strong class="top">Home</strong></a>
+	</div>
+	
+	</body>
+</html>

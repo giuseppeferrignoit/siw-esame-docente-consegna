@@ -10,14 +10,14 @@
 	<body>	
 	
 		<header> 
-			<div id="titolo"><strong class="titolo">CANCELLAZIONE PIATTO</strong></div>
+			<div id="titolo"><strong class="titolo">CATERING SRL: CANCELLAZIONE PIATTO</strong></div>
 		</header>
 			
 		<div class="sezione">				
 			<h4>Sei sicuro di voler eliminare il piatto
 				<span th:text="${piatto.nome}">Nome</span>
 				(<span th:text="${piatto.descrizione}">Descrizione</span>) da tutti i buffet in cui è presente?
-				
+			</h4>
 				<div class="sezione">	
 					<p>
 						<a th:href="@{'/confermaDeletePiatto' + '/' + ${piatto.id}}"><strong class="confermaCancellazione">CONFERMA</strong></a>

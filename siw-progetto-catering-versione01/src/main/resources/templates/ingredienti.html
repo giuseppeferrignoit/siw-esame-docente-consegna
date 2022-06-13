@@ -9,7 +9,7 @@
 	
 	<body>
 	<header> 
-		<div id="titolo"><strong class="titolo">ELENCO DEGLI INGREDIENTI A SISTEMA</strong></div>
+		<div id="titolo"><strong class="titolo">CATERING SRL: ELENCO DEGLI INGREDIENTI UTILIZZATI</strong></div>
 	</header>
 	
 	
@@ -33,11 +33,11 @@
 		</div>
 	</div>
 	<div class = "sezione" th:unless="${!ingredienti.empty}">
-			<h4>NON CI SONO INGREDIENTI ANCORA DISPONIBILI! CREARNE UNO</h4>
+			<h4>NON CI SONO INGREDIENTI ANCORA DISPONIBILI! INSERISCINE UNO</h4>
 	</div>
 	
 	<div class="sezione">	
-		<h4>CREA UN NUOVO INGREDIENTE</h4>
+		<h4>INSERISCI UN NUOVO INGREDIENTE</h4>
 		<div class="itemMain">
 			<a th:href="@{/ingredienteForm}" href="#"><strong class="creazione">Inserimento nuovo ingrediente</strong></a>
 		</div>

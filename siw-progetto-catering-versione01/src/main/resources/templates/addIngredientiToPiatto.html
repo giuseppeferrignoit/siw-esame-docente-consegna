@@ -4,26 +4,43 @@
 	<head>  	
 		<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1">
 		<title>Aggiungi ingredienti al piatto - admin</title>
-		<link rel="stylesheet" href="/../elenchi.css"/>  
+		<link rel="stylesheet" href="/../dettagli.css"/>  
 	</head> 
 
 	<body>
 		<header> 
-			<div id="titolo"><strong class="titolo">DETTAGLI DEL PIATTO CON GLI INGREDIENTI</strong></div>
+			<div id="titolo"><strong class="titolo">CATERING SRL: DETTAGLI DEL PIATTO CON GLI INGREDIENTI</strong></div>
 		</header>
 	
-		<div class="sezione">
-			<p>
-				<span ><strong>Nome piatto: </strong></span>
-				<span th:text="${piatto.nome}">Nome generico</span>
-				<span><strong>  -  Descrizione piatto: </strong></span>
-				<span  th:text="${piatto.descrizione}">Descrizione generica</span>
-			</p>
-		</div>
+		<section>
+			<div class="flex-container">
+				<div class="flex-dati">
+	
+					<div class="sezione">
+						<p>
+							<span ><strong>Nome piatto: </strong></span>
+							<span th:text="${piatto.nome}">Nome generico</span>
+						</p>
+						<p>
+							<span><strong>Descrizione piatto: </strong></span>
+							<span  th:text="${piatto.descrizione}">Descrizione generica</span>
+						</p>
+					</div>
+					
+				</div>
+				
+				<div class="flex-foto">
+					<div class="fotografia">
+						<img style="border: 3px solid green"  src="../../piatto.jpg" alt="Image" height="300" width="360">
+					</div>
+				</div>	
+				
+			</div>
+		</section>
 							
 		<div th:if="${!piatto.ingredienti.empty}">
 			<div class="sezione">
-				<h3>Ingredienti presenti nel piatto</h3>
+				<h4>INGREDIENTI PRESENTI NEL PIATTO:</h4>
 				<ul>
 					<li th:each="ingrediente: ${piatto.ingredienti}">
 						<p class="desc">
@@ -41,9 +58,10 @@
 			</div>	
 		</div>
 		
+		<div th:if="${!ingredientiAssenti.empty}">
 		<div class="sezione">
 			<p >
-				<h3>Vuoi aggiungere ingredienti al piatto tra quelli disponibili?</h3> 
+				<h4>VUOI AGGIUNGERE INGREDIENTI AL PIATTO TRA QUELLI DISPONIBILI?</h4> 
 				<ul>
 					<li th:each="ingrediente: ${ingredientiAssenti}">
 						<p class="desc">
@@ -55,6 +73,7 @@
 						</p>
 					</li>	   	
 				</ul>
+		</div>
 		</div>
 		
 		<div class="sezione">

@@ -9,7 +9,7 @@
 
 	<body>
 		<header> 
-			<div id="titolo"><strong class="titolo">Dettagli piatto e ingredienti</strong></div>
+			<div id="titolo"><strong class="titolo">CATERING SRL: DETTAGLI DEL PIATTO CON GLI INGREDIENTI</strong></div>
 		</header>
 		
 		<section>
@@ -40,7 +40,7 @@
 		
 		<div th:if="${!piatto.ingredienti.empty}">
 			<div class="sezione">
-				<strong>INGREDIENTI PRESENTI NEL PIATTO:</strong>
+				<h4>INGREDIENTI PRESENTI NEL PIATTO:</h4>
 				<ul>
 					<li th:each="ingrediente: ${piatto.ingredienti}">
 						<p class="desc">
@@ -56,7 +56,24 @@
 					</li>	
 				</ul>
 			</div>
-			
+		</div>
+		
+		<div th:if="${!ingredientiAssenti.empty}">
+		<div class="sezione">
+			<p >
+				<h4>VUOI AGGIUNGERE INGREDIENTI AL PIATTO TRA QUELLI DISPONIBILI?</h4> 
+				<ul>
+					<li th:each="ingrediente: ${ingredientiAssenti}">
+						<p class="desc">
+							<a href="ingrediente.html" th:href="@{'/ingrediente' + '/' + ${ingrediente.id}}"
+							   th:text="${ingrediente.nome}">
+							   Ingrediente</a>
+							<a href="#" th:href="@{'/piatto' + '/' + ${piatto.id} + '/' + ${ingrediente.id}}">
+								<strong class="conferma">Aggiungi al piatto</strong></a>
+						</p>
+					</li>	   	
+				</ul>
+		</div>
 		</div>
 		
 		<div class="sezione">

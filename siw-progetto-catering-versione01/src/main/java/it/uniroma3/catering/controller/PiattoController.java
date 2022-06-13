@@ -114,6 +114,7 @@ public class PiattoController {
 		Ingrediente ingrediente = this.ingredienteService.findById(idIngrediente);
 		this.piattoService.removeIngredienteFromPiatto(piatto, ingrediente);
 		model.addAttribute("piatto", piatto);
+		model.addAttribute("ingredientiAssenti", this.ingredienteService.findIngredientiNotInPiatto(piatto));
 		return "piatto.html";
 	}
 	
@@ -128,12 +129,13 @@ public class PiattoController {
 	
 	// METODI GET
 
-	// richiede un singolo chef tramite id
+	// richiede un singolo piatto tramite id
 	@GetMapping("/piatto/{id}")
 	public String getPiatto(@PathVariable("id")Long id, Model model) {
 		// id è una variabile associata al path
 		Piatto piatto = piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
+		model.addAttribute("ingredientiAssenti", this.ingredienteService.findIngredientiNotInPiatto(piatto));
 		// ritorna la pagina con i dati dell'entità richiesta
 		return "piatto.html";
 	}

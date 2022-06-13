@@ -9,7 +9,7 @@
 
 	<body>
 	<header> 
-		<div id="titolo"><strong class="titolo">Dettagli buffet con piatti</strong></div>
+		<div id="titolo"><strong class="titolo">CATERING SRL: DETTAGLI DEL BUFFET CON I PIATTI</strong></div>
 	</header>
 	
 	<section>
@@ -45,12 +45,8 @@
 	</section>
 	
 	<div th:if="${!buffet.piatti.empty}">
-	
 		<div class="sezione">
-			<p><strong>PIATTI PRESENTI NEL BUFFET:</strong></p>
-		</div>		
-		
-		<div class="sezione">	
+			<h3>PIATTI PRESENTI NEL BUFFET:</h3>
 			<ul>
 				<li th:each="piatto : ${piatti}">
 					<p class="desc">
@@ -60,12 +56,36 @@
 						</span>
 						<span>
 							<a href="#" th:href="@{'/buffet' + '/' + ${buffet.id} + 
-								'/removePiatto' +'/' + ${piatto.id}}"><strong class="elimina">ELIMINA</strong></a>
+								'/removePiatto' +'/' + ${piatto.id}}"><strong class="elimina">ELIMINA DAL BUFFET</strong></a>
 						</span>
 					</p>
 				</li>	   	
 			</ul>
 		</div>
+	</div>
+	<div class = "sezione" th:unless="${!buffet.piatti.empty}">
+			<h4>NON CI SONO PIATTI ANCORA DISPONIBILI! AGGIUNGINE UNO</h4>
+	</div>
+	
+	<div th:if="${!piattiAssenti.empty}">
+		<div class="sezione">
+			<h3>VUOI AGGIUNGERE UN PIATTO AL BUFFET TRA QUELLI DISPONIBILI?</h3>
+			<ul>
+				<li th:each="piatto: ${piattiAssenti}">
+					<p class="desc">
+						<a href="piatto.html" th:href="@{'/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">Piatto</a>
+						<a href="#" th:href="@{'/buffet' + '/' + ${buffet.id} + '/' + ${piatto.id}}"><strong class="conferma">Aggiungi al buffet</strong></a>
+					</p>
+				</li>	   	
+			</ul>
+		</div>
+	</div>
+	
+	<div class="sezione">
+		<p>
+			<a href="#" th:href="@{'/buffet' + '/' + ${buffet.id} + '/nuovoPiatto'}">
+							<strong class="conferma">CREA UN NUOVO PIATTO</strong></a>
+		</p>
 	</div>
 
 	<div class="sezione">

@@ -112,18 +112,36 @@ public class BuffetController {
 		model.addAttribute("buffet", this.buffetService.findById(id));
 		return "deleteBuffet.html";
 	}
-
+	
 	//elimina un piatto da un buffet
 	@GetMapping("/buffet/{idBuffet}/removePiatto/{idPiatto}")
-	public String removePiatto(@PathVariable("idBuffet") Long idBuffet,
+	public String removePiattoDaBuffet(@PathVariable("idBuffet") Long idBuffet,
 			@PathVariable("idPiatto") Long idPiatto, Model model) {
 		Buffet buffet = this.buffetService.findById(idBuffet);
 		Piatto piatto = this.piattoService.findById(idPiatto);
-		this.buffetService.removePiattoFromBuffet(buffet, piatto);
+		model.addAttribute("piatto", piatto);
 		model.addAttribute("buffet", buffet);
-		model.addAttribute("piatti", this.piattoService.findPiattiInBuffet(buffet));
-		return "buffet.html";
+		return "deletePiattoDaBuffet.html";
 	}
+	
+	//elimina un piatto da un buffet
+		@GetMapping("/buffet/{idBuffet}/confermaDeletePiattoDaBuffet/{idPiatto}")
+		public String removePiatto(@PathVariable("idBuffet") Long idBuffet,
+				@PathVariable("idPiatto") Long idPiatto, Model model) {
+			Buffet buffet = this.buffetService.findById(idBuffet);
+			Piatto piatto = this.piattoService.findById(idPiatto);
+			this.buffetService.removePiattoFromBuffet(buffet, piatto); // Cancellazione
+			model.addAttribute("buffet", buffet);
+			model.addAttribute("piatti", this.piattoService.findPiattiInBuffet(buffet));
+			model.addAttribute("piattiAssenti", this.piattoService.findPiattiNotInBuffet(buffet));
+			return "buffet.html";
+		}
+		
+		
+		
+		
+		
+	
 
 	//METODI PER UPDATE
 
@@ -140,9 +158,10 @@ public class BuffetController {
 	// richiede un singolo buffet tramite id
 	@GetMapping("/buffet/{id}")
 	public String getBuffet(@PathVariable("id") Long id, Model model) { // id è una variabile associata al path
-		Buffet buffet = buffetService.findById(id);
+		Buffet buffet = this.buffetService.findById(id);
 		model.addAttribute("buffet", buffet);
 		model.addAttribute("piatti", this.piattoService.findPiattiInBuffet(buffet));
+		model.addAttribute("piattiAssenti", this.piattoService.findPiattiNotInBuffet(buffet));
 		return "buffet.html"; // ritorna la pagina con i dati dell'entità richiesta
 	}
 	

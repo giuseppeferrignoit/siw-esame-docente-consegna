@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title='Login')"> </head>
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login</title>		
+	<link rel="stylesheet" href="../form.css"/>	
+</head>
+
 <body>
-	<header th:replace="fragments/base.html :: intestazione"></header>
-	<div>
-		<h2>Login</h2>
-	</div>
+
+	<header> 
+		<div id="titolo"><strong class="titolo">CATERING SRL: PAGINA DI LOGIN</strong></div>
+	</header>
+		
+	<div  class="sezione">
+		<div class="fotografia">
+			<img style="border: 3px solid green  "src="/images/testata_new.jpg" alt="Image" height="100%" width="100%">
+		</div> 
+    </div>
 	
 	<form th:action="@{/login}" method="POST">
-		<div>
+		<div  class="sezione">
 			<span><strong>Username:</strong></span>
 			<span><input name="username" type="text" required /></span>
 		</div>		
-		<div>
+		<div  class="sezione">
 			<span><strong>Password:</strong></span>
 			<span><input name="password" type="password" required /></span>
 		</div>
 	
-		<div>
-			<span><button type="submit"><strong>Login</strong></button></span>
+		<div  class="sezione">
+			<button type="submit"><strong class="log">LOGIN</strong></button>
 		</div>
 	</form>
-	
-    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+			
+	<div  class="sezione">
+    	<footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+	</div>
     
 </body>
 </html>

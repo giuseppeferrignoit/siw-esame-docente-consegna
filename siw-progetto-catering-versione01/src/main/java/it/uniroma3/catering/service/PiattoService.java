@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import it.uniroma3.catering.model.Buffet;
 import it.uniroma3.catering.model.Ingrediente;
 import it.uniroma3.catering.model.Piatto;
+import it.uniroma3.catering.repository.IngredienteRepository;
 import it.uniroma3.catering.repository.PiattoRepository;
 
 @Service
@@ -18,6 +19,9 @@ public class PiattoService {
 	
 	@Autowired
 	private PiattoRepository piattoRepository;
+	
+	@Autowired
+	private IngredienteRepository ingredienteRepository;
 	
 	@Transactional
 	public void save(Piatto piatto) { 
@@ -33,8 +37,13 @@ public class PiattoService {
 	
 	@Transactional
 	public void deleteById(Long id) {
+		Piatto piatto = this.findById(id);
+		List<Ingrediente> ingredienti = piatto.getIngredienti();
+		for (Ingrediente ingrediente : ingredienti) {
+			ingrediente.getPiatti().remove(piatto);
+			ingredienteRepository.save(ingrediente);
+		}
 		piattoRepository.deleteById(id);
-		
 	}
 	
 	public Piatto findById (Long id) {
@@ -74,10 +83,22 @@ public class PiattoService {
 		piatto.addIngrediente(ingrediente);
 		piattoRepository.save(piatto);
 	}
+	
+	@Transactional
+	public void addBuffet(Piatto piatto, Buffet buffet) {
+		piatto.addBuffet(buffet);
+		piattoRepository.save(piatto);
+	}
 
 	@Transactional
 	public void removeIngredienteFromPiatto(Piatto piatto, Ingrediente ingrediente) {
 		piatto.removeIngrediente(ingrediente);
+		piattoRepository.save(piatto);
+	}
+	
+	@Transactional
+	public void removeBuffetFromPiatto(Piatto piatto, Buffet buffet) {
+		piatto.removeBuffet(buffet);
 		piattoRepository.save(piatto);
 	}
 }

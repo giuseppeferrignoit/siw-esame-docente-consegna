@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-	<head th:replace="fragments/base.html :: headerfiles(title='SIW')"> </head>
-	
+	<head>
+		<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1">
+		<title>Index - accesso</title>		
+		<link rel="stylesheet" href="../elenchi.css"/>  
+	</head>
 	
 	<body>
-		<header th:replace="fragments/base.html :: intestazione"></header>
-	    <div>
-	    	<h1 th:text="#{header.index}">Welcome Page</h1>
-			<div>
-				<a th:href="@{/login}" th:text="#{index.login}"><strong>Accedi</strong></a>
-	   		</div>
-			<div>
-				<a th:href="@{/register}" th:text="#{index.register}"><strong>Registrati</strong></a>
-	   		</div>
+		
+		<header> 
+			<div id="titolo"><strong class="titolo">CATERING SRL: PAGINA DI ACCESSO</strong></div>
+		</header>
+		
+		<div  class="sezione">
+			<div class="fotografia">
+				<img style="border: 3px solid green  "src="/images/testata_new.jpg" alt="Image" height="100%" width="100%">
+			</div> 
 	    </div>
-	    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+		
+		<div  class="sezione">
+	    	<h2>BENVENUTO NELLA GESTIONE DELLA CATERING S.R.L.</h2>
+			<div  class="sezione">
+				<a th:href="@{/login}" th:text="ACCEDI"><strong>Accedi</strong></a>
+			</div>
+			<div  class="sezione">
+				<a th:href="@{/register}" th:text="REGISTRATI"><strong>Registrati</strong></a>
+			</div>
+		   	</div>
+	    </div>
+	   
+	    <div class="sezione">
+	    	<footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+	    </div>
 	</body>
 
 </html>

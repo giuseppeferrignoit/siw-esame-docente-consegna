@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -30,7 +31,7 @@ public class Buffet {
 	@ManyToOne
 	private Chef chef;
 	
-	@OneToMany(mappedBy="buffet", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy="buffets")
 	private List<Piatto> piatti;
 	
 	//----------Getter & Setter ----------------
@@ -57,13 +58,12 @@ public class Buffet {
 	
 	public void addPiatto(Piatto piatto) {
 		this.getPiatti().add(piatto);
-		piatto.setBuffet(this);
+		piatto.getBuffets().add(this);
 	}
 	
-
 	public void removePiatto(Piatto piatto) {
 		this.getPiatti().remove(piatto);
-		piatto.setBuffet(null);
+		piatto.getBuffets().remove(this);
 	}
 
 	public Long getId() {

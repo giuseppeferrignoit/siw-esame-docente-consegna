@@ -16,16 +16,21 @@
 			<h3>Sei sicuro di voler eliminare lo chef
 				<span th:text="${chef.nome}">Nome</span>
 				<span th:text="${chef.cognome}">Cognome</span>
-				<span>e tutti i suoi buffet?</span>
+				<span>e tutti i suoi buffet qui elencati?</span>
 				
-				<ul th:if="${!chef.buffet.empty}">
-					<li th:each="buffet: ${chef.buffet}">
-						<p class="desc">
-							<a href="buffet.html" th:href="@{'/buffet' + '/' + ${buffet.id}}"
-					   		th:text="${buffet.nome}">Buffet</a>
-						</p>
-					</li>
-				</ul>
+				<div class="sezione">	
+					<ul th:if="${!chef.buffet.empty}">
+						<li th:each="buffet: ${chef.buffet}">
+							<p class="desc">
+								<a href="buffet.html" th:href="@{'/buffet' + '/' + ${buffet.id}}"
+						   		th:text="${buffet.nome}">Buffet</a>
+							</p>
+						</li>
+					</ul>
+					
+					
+				</div>
+				
 				<div class="sezione">	
 					<p >
 						<a th:href="@{'/confermaDeleteChef' + '/' + ${chef.id}}"><strong class="confermaCancellazione">CONFERMA</strong></a>

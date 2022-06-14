@@ -10,14 +10,19 @@ import org.springframework.stereotype.Service;
 
 import it.uniroma3.catering.model.Buffet;
 import it.uniroma3.catering.model.Chef;
+import it.uniroma3.catering.model.Ingrediente;
 import it.uniroma3.catering.model.Piatto;
 import it.uniroma3.catering.repository.BuffetRepository;
+import it.uniroma3.catering.repository.PiattoRepository;
 
 @Service
 public class BuffetService {
 	
 	@Autowired
 	private BuffetRepository buffetRepository;
+	
+	@Autowired
+	private PiattoRepository piattoRepository;
 	
 	@Autowired
 	private ChefService chefService;
@@ -37,9 +42,13 @@ public class BuffetService {
 	}
 	
 	@Transactional
-	public void deleteById(Long id) {
+	public void deleteBuffet(Long id) {
+		Buffet buffet = this.findById(id);
+		List<Piatto> piatti = buffet.getPiatti();
+		for (Piatto piatto : piatti) {
+			piatto.removeBuffet(buffet);
+		}
 		buffetRepository.deleteById(id);
-		
 	}
 	
 	public Buffet findById (Long id) {
@@ -56,7 +65,7 @@ public class BuffetService {
 	
 	// Metodo che risponde ad una validazione del Validator
 	public boolean alreadyExists(Buffet buffet) {
-		//return buffetRepository.existsByNome(buffet.getNome());
+		//return buffetRepository.existsByNome(buffet.getNome()); // nel caso di implementazione
 		return buffetRepository.existsByNomeAndDescrizione(buffet.getNome(), buffet.getDescrizione());	
 	}
 	

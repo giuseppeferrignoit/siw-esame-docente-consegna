@@ -51,12 +51,12 @@
 		</div>
 	</div>
 	<div class = "sezione" th:unless="${!buffet.piatti.empty}">
-			<h4>NON CI SONO PIATTI ANCORA DISPONIBILI! AGGIUNGINE UNO</h4>
+			<h4>NON CI SONO ANCORA PIATTI DISPONIBILI! PUOI AGGIUNGERNE UNO</h4>
 	</div>
 	
 	<div th:if="${!piattiAssenti.empty}">
 		<div class="sezione">
-			<h3>VUOI AGGIUNGERE UN PIATTO AL BUFFET TRA QUELLI DISPONIBILI?</h3>
+			<h4>VUOI AGGIUNGERE UN PIATTO AL BUFFET TRA QUELLI DISPONIBILI?</h4>
 			<ul>
 				<li th:each="piatto: ${piattiAssenti}">
 					<p class="desc">

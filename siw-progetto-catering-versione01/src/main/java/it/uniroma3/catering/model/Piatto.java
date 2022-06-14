@@ -25,24 +25,16 @@ public class Piatto {
 	@NotBlank
 	private String descrizione;
 	
-	@ManyToOne	
-	private Buffet buffet;
+	@ManyToMany	
+	private List<Buffet> buffets;
 
-	@ManyToMany(mappedBy="piatti", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy="piatti")
 	private List<Ingrediente> ingredienti;
 	
 	//-----------------------------
 	
 	public Piatto() {
 		this.ingredienti = new ArrayList<Ingrediente>();
-	}
-	
-	public Buffet getBuffet() {
-		return buffet;
-	}
-
-	public void setBuffet(Buffet buffet) {
-		this.buffet = buffet;
 	}
 
 	public Long getId() {
@@ -70,6 +62,15 @@ public class Piatto {
 		this.getIngredienti().remove(ingrediente);
 		ingrediente.getPiatti().remove(this);
 	}
+	
+	public void addBuffet(Buffet buffet) {
+		this.getBuffets().add(buffet);
+		buffet.getPiatti().add(this);
+	}
+	
+	public void removeBuffet(Buffet buffet) {
+		this.getBuffets().remove(buffet);
+	}
 
 	public String getNome() {
 		return nome;
@@ -86,6 +87,15 @@ public class Piatto {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+
+	public List<Buffet> getBuffets() {
+		return buffets;
+	}
+
+	public void setBuffets(List<Buffet> buffets) {
+		this.buffets = buffets;
+	}
+
 
 	@Override
 	public int hashCode() {

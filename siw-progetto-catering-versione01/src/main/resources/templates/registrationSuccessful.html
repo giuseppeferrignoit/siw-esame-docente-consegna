@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title='Esito registrazione')"> </head>
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	<title>Esito registrazione</title>		
+	<link rel="stylesheet" href="../dettagli.css"/>	
+</head>
+
+
 <body>
-	<header th:replace="fragments/base.html :: intestazione"></header>
-	<div>
-    	<h2 th:text="#{header.registra}">Registrazione</h2>
+	<header> 
+		<div id="titolo"><strong class="titolo">CATERING SRL: ESITO REGISTRZIONE</strong></div>
+	</header>
+	
+	<div  class="sezione">
+		<div class="fotografia">
+			<img style="border: 3px solid green  "src="/images/testata_new.jpg" alt="Image" height="100%" width="100%">
+		</div> 
+    </div>
+
+	<div  class="sezione">
 		<h1>Congratulazioni ti sei registrato!</h1>
 	</div>
-    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+	
+	<div  class="sezione">
+    	<footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+	</div>
 </body>
 </html>

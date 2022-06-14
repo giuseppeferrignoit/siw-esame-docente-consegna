@@ -102,7 +102,7 @@ public class BuffetController {
 
 	@GetMapping("/confermaDeleteBuffet/{id}")
 	public String confermaDeleteBuffet(@PathVariable("id") Long id, Model model) {
-		this.buffetService.deleteById(id);
+		this.buffetService.deleteBuffet(id);
 		model.addAttribute("buffets", this.buffetService.findAll());
 		return "buffets.html";
 	}
@@ -136,12 +136,7 @@ public class BuffetController {
 			model.addAttribute("piattiAssenti", this.piattoService.findPiattiNotInBuffet(buffet));
 			return "buffet.html";
 		}
-		
-		
-		
-		
-		
-	
+
 
 	//METODI PER UPDATE
 
@@ -193,10 +188,10 @@ public class BuffetController {
 	
 
 	// crea un nuovo buffet associato allo chef passato nel path
-	@GetMapping("/chef/{idChef}/nuovoBuffet")
-	public String createBuffet(@PathVariable("idChef") Long idChef, Model model) {
+	@GetMapping("/chef/{id}/nuovoBuffet")
+	public String createBuffet(@PathVariable("id") Long id, Model model) {
 		Buffet buffet = new Buffet();
-		model.addAttribute("chef", chefService.findById(idChef));
+		model.addAttribute("chef", chefService.findById(id));
 		model.addAttribute("buffet", buffet);
 		return "buffetForm.html";
 	}

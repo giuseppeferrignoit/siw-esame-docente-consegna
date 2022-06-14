@@ -106,17 +106,28 @@ public class PiattoController {
 		return "deletePiatto.html";
 	}
 	
-	//elimina un ingrediente da un piatto
+	//elimina un ingrediente da un piatto previo conferma
 	@GetMapping("/piatto/{idPiatto}/removeIngrediente/{idIngrediente}")
-	public String removeIngrediente(@PathVariable("idPiatto") Long idPiatto, 
+	public String removeIngredienteDaPiatto(@PathVariable("idPiatto") Long idPiatto, 
 			@PathVariable("idIngrediente") Long idIngrediente, Model model) {
 		Piatto piatto = this.piattoService.findById(idPiatto);
 		Ingrediente ingrediente = this.ingredienteService.findById(idIngrediente);
-		this.piattoService.removeIngredienteFromPiatto(piatto, ingrediente);
+		model.addAttribute("ingrediente", ingrediente);
 		model.addAttribute("piatto", piatto);
-		model.addAttribute("ingredientiAssenti", this.ingredienteService.findIngredientiNotInPiatto(piatto));
-		return "piatto.html";
+		return "deleteIngredienteDaPiatto.html";
 	}
+	
+	//elimina un ingrediente da un piatto dopo conferma
+		@GetMapping("/piatto/{idPiatto}/confermaRemoveIngrediente/{idIngrediente}")
+		public String removeIngrediente(@PathVariable("idPiatto") Long idPiatto, 
+				@PathVariable("idIngrediente") Long idIngrediente, Model model) {
+			Piatto piatto = this.piattoService.findById(idPiatto);
+			Ingrediente ingrediente = this.ingredienteService.findById(idIngrediente);
+			this.piattoService.removeIngredienteFromPiatto(piatto, ingrediente);
+			model.addAttribute("piatto", piatto);
+			model.addAttribute("ingredientiAssenti", this.ingredienteService.findIngredientiNotInPiatto(piatto));
+			return "piatto.html";
+		}
 	
 	// METODI PER UPDATE
 	@GetMapping("/updatePiatto/{id}")

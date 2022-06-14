@@ -87,6 +87,15 @@ strong.bottone {
 	color:green;
 }
 
+strong.log {
+	font-size:large;
+	text-align: justify;
+	background-color: whitesmoke;
+	margin: 2px;
+	padding: 2px;
+	color:green;
+}
+
 strong.top {
 	font-size: 15px;
 	color: darkblue;

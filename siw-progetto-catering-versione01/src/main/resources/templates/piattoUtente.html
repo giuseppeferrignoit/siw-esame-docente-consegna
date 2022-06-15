@@ -18,15 +18,32 @@
 	
 					<div class="sezione">
 						<p>
-							<span ><strong>Nome piatto: </strong></span>
+							<span ><strong class="descrizione">Nome piatto: </strong></span>
 							<span th:text="${piatto.nome}">Nome generico</span>
 						</p>
 						<p>
-							<span><strong>Descrizione piatto: </strong></span>
+							<span><strong class="descrizione">Descrizione piatto: </strong></span>
 							<span  th:text="${piatto.descrizione}">Descrizione generica</span>
 						</p>
 					</div>
 					
+					<div th:if="${!piatto.buffets.empty}">
+						<div class="sezione">
+							<p>
+								<span ><strong>BUFFET IN CUI E' INCLUSO: </strong></span>
+							<ul>
+								<li th:each="buffet: ${piatto.buffets}">
+										<span>
+											<a href="buffetUtente.html" th:href="@{'/buffetUtente' + '/' + ${buffet.id}}"
+									   		th:text="${buffet.nome}">Buffet generico</a>
+									   	</span>
+								</li>	
+							</ul>
+							
+							</p>
+						</div>
+					</div>
+	
 				</div>
 				
 				<div class="flex-foto">
@@ -40,10 +57,7 @@
 		
 		<div th:if="${!piatto.ingredienti.empty}">
 			<div class="sezione">
-				<strong>INGREDIENTI PRESENTI NEL PIATTO:</strong>
-			</div>
-			<div class="sezione">
-			
+				<h4>INGREDIENTI PRESENTI NEL PIATTO:</h4>
 				<ul>
 					<li th:each="ingrediente : ${piatto.ingredienti}">
 						<p class="desc">

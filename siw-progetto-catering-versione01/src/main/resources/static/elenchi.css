@@ -116,6 +116,11 @@ strong.bottone {
 	color:green;
 }
 
+strong.descrizione {
+	font-size: 20px;
+	color: green;
+}
+
 .fotografia {
 	display: block;
 	padding: 5px;

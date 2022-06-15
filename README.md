@@ -10,4 +10,4 @@ situazione al 14 giugno 2022
 PROBLEMI NON RISOLTI:
 
 1) Si riscontrano saltuarie perdite di connessione ai CSS, probabilmente a causa del browser. 
-Non sono riuscito a determinarne l'origine.
+Non sono riuscito a determinarne l'origine. In particolare sulla pagina di logging.

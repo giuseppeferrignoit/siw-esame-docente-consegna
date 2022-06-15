@@ -32,7 +32,7 @@ public class Chef {
 	@NotBlank
 	private String nazionalita;
 	
-	@OneToMany(mappedBy="chef", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="chef")
 	private List<Buffet> buffet;
 	
 	//-------------------------------

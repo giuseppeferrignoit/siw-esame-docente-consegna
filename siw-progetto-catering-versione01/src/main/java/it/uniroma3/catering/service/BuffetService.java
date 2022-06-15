@@ -13,6 +13,7 @@ import it.uniroma3.catering.model.Chef;
 import it.uniroma3.catering.model.Ingrediente;
 import it.uniroma3.catering.model.Piatto;
 import it.uniroma3.catering.repository.BuffetRepository;
+import it.uniroma3.catering.repository.ChefRepository;
 import it.uniroma3.catering.repository.PiattoRepository;
 
 @Service
@@ -25,7 +26,7 @@ public class BuffetService {
 	private PiattoRepository piattoRepository;
 	
 	@Autowired
-	private ChefService chefService;
+	private ChefRepository chefRepository;
 	
 	@Transactional
 	public void save(Buffet buffet, Chef chef) { 
@@ -47,6 +48,7 @@ public class BuffetService {
 		List<Piatto> piatti = buffet.getPiatti();
 		for (Piatto piatto : piatti) {
 			piatto.removeBuffet(buffet);
+			piattoRepository.save(piatto);
 		}
 		buffetRepository.deleteById(id);
 	}

@@ -18,15 +18,15 @@
 				<div class="flex-dati">
 					<div class="sezione">	
 						<p>
-							<span ><strong>Nome buffet: </strong></span>
+							<span ><strong class="descrizione">Nome buffet: </strong></span>
 							<span th:text="${buffet.nome}">Buffet generico</span>
 						</p>
 						<p>
-							<span><strong>Descrizione buffet: </strong></span>
+							<span><strong class="descrizione">Descrizione buffet: </strong></span>
 							<span  th:text="${buffet.descrizione}">Descrizione generica</span>
 						</p>
 						<p>
-							<span ><strong>Nome chef: </strong></span>
+							<span ><strong class="descrizione">Nome chef: </strong></span>
 							<span >
 								<a th:text="${buffet.chef}" th:href="@{'/chefUtente' + '/' + ${buffet.chef.id}}">Chef</a>
 							</span>
@@ -45,12 +45,8 @@
 	</section>
 	
 	<div th:if="${!buffet.piatti.empty}">
-	
 		<div class="sezione">
-			<p><strong>PIATTI PRESENTI NEL BUFFET:</strong></p>
-		</div>
-		
-		<div class="sezione">	
+			<h3><strong>PIATTI PRESENTI NEL BUFFET:</strong></h3>
 			<ul>
 				<li th:each="piatto : ${piatti}">
 					<p class="desc">

@@ -15,11 +15,12 @@
 	<div th:if="${!ingredienti.empty}">
 		<div class="sezione">
 			<p>
+			<h3>INGREDIENTI:</h3>
 				<ul>
 					<li th:each="ingrediente: ${ingredienti}">
 						<p class="desc">
 							<span>
-								<a href="ingrediente.html" th:href="@{'/ingrediente' + '/' + ${ingrediente.id}}"
+								<a href="ingredienteUtente.html" th:href="@{'/ingredienteUtente' + '/' + ${ingrediente.id}}"
 						   		th:text="${ingrediente.nome}">Ingrediente</a>
 							</span>
 						</p>

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import it.uniroma3.catering.model.Buffet;
 import it.uniroma3.catering.model.Chef;
+import it.uniroma3.catering.model.Ingrediente;
+import it.uniroma3.catering.model.Piatto;
 import it.uniroma3.catering.repository.ChefRepository;
 
 @Service
@@ -17,6 +19,9 @@ public class ChefService {
 	
 	@Autowired
 	private ChefRepository chefRepository;
+	
+	@Autowired
+	private BuffetService buffetService;
 	
 	@Transactional
 	public void save(Chef chef) { 
@@ -32,6 +37,12 @@ public class ChefService {
 	
 	@Transactional
 	public void deleteById(Long id) {
+		Chef chef = this.findById(id);
+		// Cancellazione dei buffet dello chef
+		List<Buffet> buffets = chef.getBuffet();
+		for (Buffet buffet : buffets) {
+			buffetService.deleteBuffet(buffet.getId());
+		}
 		chefRepository.deleteById(id);
 	}
 	

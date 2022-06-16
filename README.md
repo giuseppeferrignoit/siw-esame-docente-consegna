@@ -14,3 +14,5 @@ Non sono riuscito a determinarne l'origine. In particolare sulla pagina di loggi
 2) Come pulizia del codice sarebbe stato meglio raggruppare le forms per ADMIN tutte
 sotto la subdirectory templates/admin, ma non cambia nulla nelll'operatività corretta 
 del codice. Sono state lasciate tutte insieme, tranne la home.
+3) Nella classe AuthConfiguration, che estende la WebSecurityConfigurerAdapter, quest'ultima
+è segnalata deprecata da Eclipse, senza conseguenze.

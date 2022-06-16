@@ -11,3 +11,6 @@ PROBLEMI NON RISOLTI:
 
 1) Si riscontrano saltuarie perdite di connessione ai CSS, probabilmente a causa del browser. 
 Non sono riuscito a determinarne l'origine. In particolare sulla pagina di logging.
+2) Come pulizia del codice sarebbe stato meglio raggruppare le forms per ADMIN tutte
+sotto la subdirectory templates/admin, ma non cambia nulla nelll'operatività corretta 
+del codice. Sono state lasciate tutte insieme, tranne la home.
